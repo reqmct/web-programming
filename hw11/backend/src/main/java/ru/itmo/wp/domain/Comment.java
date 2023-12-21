@@ -1,5 +1,6 @@
 package ru.itmo.wp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -28,6 +29,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
+    @JsonIgnore
     private Post post;
 
     @CreationTimestamp
@@ -63,5 +65,13 @@ public class Comment {
 
     public void setCreationTime(Date creationTime) {
         this.creationTime = creationTime;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }
